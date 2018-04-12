@@ -1,13 +1,21 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Node {
 	private Node father;
 	private int info;
+	private ArrayList<Node> listSons;
 	
 	
 	public Node(Node father, int info) {
 		this.father = father;
 		this.info = info;
+		this.listSons = new ArrayList<Node>();
+	}
+	
+	public void addSon(Node son){
+		this.listSons.add(son);
 	}
 
 

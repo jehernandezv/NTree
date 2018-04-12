@@ -22,5 +22,9 @@ public class JFMainWindow extends JFrame {
 		
 	}
 	
+	public void showChooser(){
+	 this.jpSeleecFile.showChooser();
+	}
+	
 
 }
