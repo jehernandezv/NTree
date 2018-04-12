@@ -14,9 +14,8 @@ public class ControlFile {
 	public ControlFile(String string) {
 		this.tree = new Tree();
 		tree.setRoot(new Node(string));
-//		this.getSongFile(file);
-//		this.getExtension(this.listSongs);
-//		this.addExtensionTree();
+		this.listSongs =  new ArrayList<File>();
+		this.listExtension = new ArrayList<String>();
 	}
 	
 	public void getSongFile(File fileSelect){
@@ -28,6 +27,7 @@ public class ControlFile {
 				this.listSongs.add(listFile[i]);
 			}
 		}
+	
 	}
 	
 	
@@ -35,6 +35,8 @@ public class ControlFile {
 		for (int i = 0; i < files.size(); i++) {
 			this.listExtension.add(getNameFile(files.get(i), (byte) 1));
 		}
+		
+		
 	}
 	
 	public void addExtensionTree(){
@@ -42,9 +44,13 @@ public class ControlFile {
 				String extSong = getNameFile(listSongs.get(i), (byte) 1);
 				if(!listExtension.contains(extSong)){
 					this.tree.add(this.tree.getRoot(), extSong);
+			   }else{
+				this.tree.add(this.tree.getRoot(), this.getNameFile(this.listSongs.get(i), (byte)0));
 			}
 		}
 	}
+	
+	
 	
 	public void refactorTree(File fileSelect){
 		getSongFile(fileSelect);
@@ -56,7 +62,7 @@ public class ControlFile {
 	public String getNameFile(File file,byte pos){
 		String nameFile = file.getName();
 		String aux = Pattern.quote(".");
-		return nameFile.split(aux)[pos].toString();
+		return nameFile.split(aux)[pos];
 	}
 
 	public Tree getTree() {
